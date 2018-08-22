@@ -3,12 +3,36 @@
 <title>Karnaugh map</title>
 </head>
 <body>
+
+
+
+		<input id="a" type="button" value=""/>
+		<br/>
+		<input id="b" type="button" value=""/>
+		<br/>
+		<input id="c" type="button" value=""/>
+		<br/>
+		<input id="d" type="button" value=""/>
+		<br/>
+
+
 <script>
 
 		function print(array, pow, variables) {
+			
+		for (let i = 0, c = 'A'; i < variables; i++) {
+			document.write(c);
+			c = String.fromCharCode(c.charCodeAt() + 1);
+			
+		}
+		document.write(" Result" + "<br/>");
+
 			for (let i = 0; i < pow; i++) {
 				for (let j = 0; j < variables + 1; j++) {
 					document.write(array[i][j] + " ");
+					if (j == variables - 1) {
+						document.write("|  ");
+					}
 				}
 				document.write("<br/>");
 			}
@@ -30,15 +54,17 @@
 		var tokens = ["and", "or", "xor", "nand", "nor", "xnor"];
 		var strings = [];
 		
-		for (let i = 0; i < variables - 1; i++) {
-			strings[i] = tokens[Math.floor(Math.random() * 6)];
-		}
+		var newString = something(variables, strings, tokens);
+
+		
+		
 
 		var array = [];
 		for (let i = 0; i < pow; i++) {
      		array[i] = [];
      		dec2bin(i, variables, array);
   		}
+
 
 		for (let i = 0; i < pow; i++) {
 
@@ -68,9 +94,46 @@
 		
 		print(array, pow, variables);
 
+	
+
+
+
+		function something (variables, strings, tokens) {
+
+
+		var construct = "A";
+
+			for (let i = 0, c = 'B'; i < variables - 1; i++) {
+				strings[i] = tokens[Math.floor(Math.random() * 6)];
+				
+				construct += " " + strings[i] + " " + c;
+				c = String.fromCharCode(c.charCodeAt() + 1);
+			}
+
+			return construct;
+
+		}
+
+
 		
+
+        document.getElementById('a').value = newString;
+        document.getElementById('b').value = something(variables, strings, tokens);
+        document.getElementById('c').value = something(variables, strings, tokens);
+        document.getElementById('d').value = something(variables, strings, tokens);
+
+
+        document.write(newString + " is the Correct Answer.");
+		document.write("<br/>")
 	
 
 </script>
+
+
+	
+
+
+
+
 </body>
 </html>
