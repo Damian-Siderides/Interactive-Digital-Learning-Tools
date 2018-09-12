@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Truth Table Generator</title>
+<title>Karnaugh map</title>
 </head>
 <body>
 
@@ -11,6 +11,7 @@
 
 		<br>
 
+		
 		<input id="a" type="button" value=""/>
 		<br/>
 		<input id="b" type="button" value=""/>
@@ -19,7 +20,7 @@
 		<br/>
 		<input id="d" type="button" value=""/>
 		<br/>
-
+		
 
 <script>
 
@@ -129,7 +130,46 @@
 
 
         document.write(newString + " is the Correct Answer.");
-		document.write("<br/>")
+		document.write("<br/>");
+
+
+
+
+
+		//generate the karnaugh map
+		// assuming 4 variables
+		// we should probably account for 2,3 and 4 variables maingly, 6 variables at the most for extension problems
+
+		document.write("<br/>");
+		document.write("<br/>");
+
+		thing = ["00", "01", "11", "10"];
+
+		document.write("__");
+		for (let i = 0; i < 4; i++) {
+			document.write(thing[i] + " ");
+		}
+
+
+		for (let i = 0; i < 4; i++) {
+			document.write("<br/>");
+			document.write(thing[i] + " ");
+
+			for (let j = 0; j < 4; j++) {
+				//its not actuall i + j, its the x + y axis coordinate
+				//thing
+				// would be great if javascript had ENUMS
+				document.write(array[i + j][variables] + "_");
+			}
+		}
+
+
+
+
+
+
+
+
 	
 
 </script>

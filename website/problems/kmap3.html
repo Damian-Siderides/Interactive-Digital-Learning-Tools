@@ -23,6 +23,8 @@
 
 <script>
 
+
+		/*
 		function print(array, pow, variables) {
 			
 		for (let i = 0, c = 'A'; i < variables; i++) {
@@ -130,7 +132,64 @@
 
         document.write(newString + " is the Correct Answer.");
 		document.write("<br/>")
-	
+		*/
+
+		var number = 10;
+
+
+		function dec2bin(c) {
+   			for(let i = 31; i >= 0; i--) {
+     			if ((c & (1 << i)) != 0) {
+      				document.write(1);
+     			} else {
+       				document.write(0);
+     			}
+     			if (i % 4 == 0) {
+     				document.write(" ");
+     			}
+   			}
+   			document.write("<br/>");
+		}
+
+
+
+		dec2bin(number);
+		dec2bin(~number); // 1's complement
+
+		//why do characters have different spacing in this font
+
+		//implement function that will print leading zeros
+		document.write(number.toString(16));
+
+
+		document.write("<br/>");
+		document.write("<br/>");
+
+		dec2hex(10);
+		function dec2hex(c) {
+
+			var a = c.toString(16);
+
+			if (a.length < 8) {
+
+				for (let i = a.length; i < 8; i++) {
+					document.write(0);
+				}
+				document.write(a);
+
+			} else {
+				document.write(a);
+			}
+			
+		}
+
+		function dec2oct(c) {
+
+		}
+
+
+
+
 
 </script>
 
