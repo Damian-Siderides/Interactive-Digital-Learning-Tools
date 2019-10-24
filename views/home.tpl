@@ -16,45 +16,22 @@
 <a href="kmap3">Binary Representation</a>
 <br/>
 <a href="kmap4">Logic Gate Guesser</a>
-<br/>
-<a href="kmap5.html">Binary Things</a>
-<br/>
-<a href="kmap6.html">Binary Things</a>
-<br/>
-<a href="kmap7.html">Binary Things</a>
-<br/>
-<a href="kmap8.html">Binary Things</a>
-<br/>
 <br>
 <h1><u>VHDL</u></h1>
-<a href="vhdl">vhdl</a>
+<a href="vhdl">VHDL Logic Gates</a>
 <br/>
-<a href="vhdl2">vhdl2</a>
+<a href="vhdl2">VHDL Multiplexers</a>
 <br/>
-<a href="vhdl3">vhdl3</a>
+<a href="vhdl3">VHDL Adders</a>
 <br/>
-<a href="vhdl4">vhdl4</a>
+<a href="vhdl4">VHDL Finite State Machines</a>
 <br/>
-<a href="vhdl5">vhdl5</a>
+<a href="vhdl5">VHDL All</a>
 <br/>
-
-<br><br>
 
 <h1><u>VHDL Resources</u></h1>
 
 <a href="https://www.youtube.com/playlist?list=PLzMJf9IPal0o0koGktuyATJFGPOfCV4oO">vhdl playlist</a>
-
-<br>
-
-<h1><u>Finite State Machines</u></h1>
-<a href="fsm">fsm</a>
-<br/>
-<a href="fsm2">fsm2</a>
-<br/>
-<a href="fsm3">fsm3</a>
-<br/>
-<a href="fsm4">fsm4</a>
-<br/>
 
 <br>
 

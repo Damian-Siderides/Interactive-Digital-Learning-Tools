@@ -5,17 +5,12 @@ fields = "(username, password, rightkmap, wrongkmap, totalkmap, rightkmap2, wron
 values = "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0"
 #could use python to multiply the zeros
 
-
 conn = sqlite3.connect('data.db') # Warning: This file is created in the current directory
 conn.execute("CREATE TABLE data (id INTEGER PRIMARY KEY, {})".format(init))
-conn.execute("INSERT INTO data {} VALUES ('john', 'pass', {})".format(fields, values))
-conn.execute("INSERT INTO data {} VALUES ('GLOBAL', 'spacebar', {})".format(fields, values))
-conn.execute("INSERT INTO data {} VALUES ('Anonymous', 'telephone', {})".format(fields, values))
+conn.execute("INSERT INTO data {} VALUES ('global', 'spacebar', {})".format(fields, values))
+conn.execute("INSERT INTO data {} VALUES ('anonymous', 'telephone', {})".format(fields, values))
 conn.commit()
-
 
 # Should we have a field for total? or should we just add right and wrong when we need a total?
 # for now so we dont break everything leave it as total
 # try and make username unique
-
-#change Anonymous to anon next time
