@@ -3,6 +3,7 @@ run:
 
 install:
 	pip install bottle
+	python script.py
 
 clean:
 	rm data.db

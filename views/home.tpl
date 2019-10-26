@@ -1,5 +1,9 @@
 %rebase("template.tpl")
 
+%if status == "success":
+  <div class="alert alert-success" role="alert">You have successfully logged in.</div>
+%end
+
 <center>
 <br>
 <!-- <br><br> -->

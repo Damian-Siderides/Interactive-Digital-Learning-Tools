@@ -9,6 +9,11 @@
   </form>
 </center> -->
 
+%if status == "success":
+  <div class="alert alert-success" role="alert">You have successfully registered. Please log in.</div>
+%elif status == "wrong":
+  <div class="alert alert-danger" role="alert">Incorrect username or password. Please try again.</div>
+%end
 
 <html lang="en">
   <head>
@@ -48,7 +53,7 @@
   <body class="text-center">
     <form class="form-signin" action="/login" method="post">
   <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <h1 class="h3 mb-3 font-weight-normal">Please log in</h1>
   <label for="inputEmail" class="sr-only">Username</label>
   <input name="username" type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
   <label for="inputPassword" class="sr-only">Password</label>

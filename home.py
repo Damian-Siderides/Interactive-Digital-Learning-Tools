@@ -1,10 +1,10 @@
 import sqlite3
-from bottle import route, run, debug, template, request, static_file, get, post, response
+from bottle import route, run, debug, template, request, static_file, get, post, response, redirect
 
 @route('/')
 @route('/home')
 def home():
-    return template('home')
+    return template('home', status="no")
 
 @route('/problems')
 def problem():
@@ -85,7 +85,7 @@ def logout():
 
 @get('/login')
 def login():
-    return template('login')
+    return template('login', status="no")
 
 @post('/login')
 def login():
@@ -99,17 +99,18 @@ def login():
     c.close()
     
     if cur_data == None:
-        return "Incorrect username or password"
+        return template('login', status="wrong")
 
     if password == cur_data[0]:
         response.set_cookie('username', username)
-        return template('You have entered the correct username and password. and your username is {{test}}', test = request.get_cookie('username'))
+        #return template('You have entered the correct username and password. and your username is {{test}}', test = request.get_cookie('username'))
         #if u log in again this will tell u the username of the previous person
-    return 'Username or Password incorrect'
+        return template('home', status="success")
+    return template('login', status="wrong")
 
 @get('/register')
 def register():
-    return template('register')
+    return template('register', status="no")
 
 @post('/register')
 def register():
@@ -126,7 +127,7 @@ def register():
     conn.commit()
     c.close()
     
-    return template('register')
+    return template('login', status="success")
 
     #bare in mind values are in url bar
 
