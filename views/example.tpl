@@ -1,61 +1,45 @@
 %rebase("template.tpl")
 %import sqlite3
 
-%if status == "success":
-	<div class="alert alert-success" role="alert">Your answer was correct!</div>
-%elif status == "wrong":
-	<div class="alert alert-danger" role="alert">Your answer was wrong!</div>
-%end
 		
 		<br><br>
 		
-		<center><h2>What Logic Gate does the following VHDL code implement?</h2></center>
+		<center><h2>VHDL Template Code</h2></center>
 
 		<br><br>
 
-		<pre id = "blob" class = "jumbotron">
-			
-		</pre>
-
-		
-
+		<pre id = "blob" class = "jumbotron"></pre>
 
 		<center>
-
-		
-
-		<br><br><br>
-
-
-	<form action="/vhdl" method="post">
 				<input hidden id = "answer" name="answer" value="test" type="text"/>
 
-                <input name="guess" value="AND" type="submit" class="btn btn-outline-primary btn-lg"/>
-                <input name="guess" value="OR" type="submit" class="btn btn-outline-primary btn-lg"/>
-                <input name="guess" value="XOR" type="submit" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="AND" type="submit" onClick="change(0);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="OR" type="submit" onClick="change(1);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="XOR" type="submit" onClick="change(2);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="NAND" type="submit" onClick="change(3);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="NOR" type="submit" onClick="change(4);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="XNOR" type="submit" onClick="change(5);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="NOT" type="submit" onClick="change(6);" class="btn btn-outline-primary btn-lg"/>
                 <br><br>
-                <input name="guess" value="NAND" type="submit" class="btn btn-outline-primary btn-lg"/>
-                <input name="guess" value="NOR" type="submit" class="btn btn-outline-primary btn-lg"/>
-                <input name="guess" value="XNOR" type="submit" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="multiplexer" type="submit" onClick="change(7);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="4 multiplexer" type="submit" onClick="change(8);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="bus multiplexer" type="submit" onClick="change(9);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="other bus multiplexer" type="submit" onClick="change(10);" class="btn btn-outline-primary btn-lg"/>
                 <br><br>
-                <input name="guess" value="NOT" type="submit" class="btn btn-outline-primary btn-lg"/>
-                
-  	</form>
-
-		
-
-		</center>
-
-		<br><br><br>
-  		<input id="help" name="help" value="help" type="button" onClick="help();" class="btn btn-outline-secondary btn-lg"/>
-
-  		<br><br>
-  		
-  		<div id="myDiv">
-  		<input id="slide" type="button" onclick="location.href='../';" value="Test Lecture Slide Link" class="btn btn-outline-secondary btn-lg"/>
-  		<input id="video" type="button" onclick="location.href='../';" value="Test Video Link" class="btn btn-outline-secondary btn-lg"/>
-  		</div>
-
+                <input name="guess" value="single flip flop" type="submit" onClick="change(11);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="something" type="submit" onClick="change(12);" class="btn btn-outline-primary btn-lg"/>   
+                <input name="guess" value="half adder" type="submit" onClick="change(13);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="full adder" type="submit" onClick="change(14);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="tristate buffer" type="submit" onClick="change(15);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="tristate vector" type="submit" onClick="change(16);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="memory entity" type="submit" onClick="change(17);" class="btn btn-outline-primary btn-lg"/>
+                <br><br>
+                <input name="guess" value="next state bloated" type="submit" onClick="change(18);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="next state" type="submit" onClick="change(19);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="finite state machine" type="submit" onClick="change(20);" class="btn btn-outline-primary btn-lg"/>
+                <input name="guess" value="crosswalk" type="submit" onClick="change(21);" class="btn btn-outline-primary btn-lg"/>
+                <br><br>
+</center>
 <script>
 
 //things to add
@@ -64,29 +48,11 @@
 //Make it flash?
 //So users can notice multiple flashes
 //make it a notification?
-		var y = document.getElementById("myDiv");
-  		y.style.display = "none";
-  		
-		function help() {
-			var x = document.getElementById("myDiv");
-  			if (x.style.display === "none") {
-    			x.style.display = "block";
-  			} else {
-    			x.style.display = "none";
-  			}
+
+		function change(number) {
+			document.getElementById("blob").innerHTML = gate[number];
 		}
 
-		function printLetters(variables) {
-		
-			let letters = "";
-
-			for (let i = 0, c = 'A'; i < variables; i++) {
-				letters += c;
-				c = String.fromCharCode(c.charCodeAt() + 1);
-			}
-			document.getElementById("letters").innerHTML = letters;
-		}
-		
 		function isCorrect(name) {
 
 			if (name == random) {
@@ -561,7 +527,8 @@ END behavioural`
 // mealy state machine - output function of the state and inputs
 // add full adder and other circuits, latch flipflop counter
 
-		document.getElementById("blob").innerHTML = gate[num + offset];
+		//document.getElementById("blob").innerHTML = gate[num + offset];
+		document.getElementById("blob").innerHTML = gate[{{num}}];
 
 
 		// these statements dont work because javascript is a bad langauge

@@ -49,18 +49,24 @@
 
                 <input id="a" name="guess" value="a" type="submit" class="btn btn-outline-primary btn-lg"/>
                 <input id="b" name="guess" value="b" type="submit" class="btn btn-outline-primary btn-lg"/>
-                <input id="c" name="guess" value="c" type="submit" class="btn btn-outline-primary btn-lg"/>
                 <br><br>
+                <input id="c" name="guess" value="c" type="submit" class="btn btn-outline-primary btn-lg"/>
                 <input id="d" name="guess" value="d" type="submit" class="btn btn-outline-primary btn-lg"/>
+
+
                 
                 
   	</form>
 
+  		<br><br><br>
+  		<input id="help" name="help" value="help" type="button" onClick="help();" class="btn btn-outline-secondary btn-lg"/>
 
-
-
-
-
+  		<br><br>
+  		
+  		<div id="myDiv">
+  		<input id="slide" type="button" onclick="location.href='../';" value="Test Lecture Slide Link" class="btn btn-outline-secondary btn-lg"/>
+  		<input id="video" type="button" onclick="location.href='../';" value="Test Video Link" class="btn btn-outline-secondary btn-lg"/>
+  		</div>
 
 
 
@@ -86,6 +92,18 @@
 
 		//dont overload the built in print() function
 		
+		var y = document.getElementById("myDiv");
+  		y.style.display = "none";
+  		
+		function help() {
+			var x = document.getElementById("myDiv");
+  			if (x.style.display === "none") {
+    			x.style.display = "block";
+  			} else {
+    			x.style.display = "none";
+  			}
+		}
+
 		function printLetters(variables) {
 		
 			let letters = "";

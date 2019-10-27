@@ -4,6 +4,12 @@
 	<meta charset="utf-8">
 	<title>Interactive Digital Learning Tools</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+   .inline-flex-parent {
+  display: inline-flex;
+}
+  </style>
 </head>
 <body>
 
@@ -16,7 +22,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link navbar-brand" href="home">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link navbar-brand" href="/home">Home<span class="sr-only">(current)</span></a>
       </li>
       
       <!-- <li class="nav-item">
@@ -53,9 +59,16 @@
           <a class="dropdown-item" href="/fsm4">fsm4</a>
         </div>
       </li> -->
+      <li class="nav-item active">
+        <a class="nav-link navbar-brand" href="/new">Practice<span class="sr-only">(current)</span></a>
+      </li>
 
       <li class="nav-item active">
-        <a class="nav-link navbar-brand" href="stats">Stats<span class="sr-only">(current)</span></a>
+        <a class="nav-link navbar-brand" href="/template/0">Template<span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link navbar-brand" href="/stats">Stats<span class="sr-only">(current)</span></a>
       </li>
 
 
@@ -66,13 +79,13 @@
     </ul>
      <form class="form-inline my-2 my-lg-0">
       <li class="nav-item active">
-        <a class="nav-link navbar-brand" href="login">Login<span class="sr-only">(current)</span></a>
+        <a class="nav-link navbar-brand" href="/login">Login<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link navbar-brand" href="logout">Logout<span class="sr-only">(current)</span></a>
+        <a class="nav-link navbar-brand" href="/logout">Logout<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link navbar-brand" href="register">Register<span class="sr-only">(current)</span></a>
+        <a class="nav-link navbar-brand" href="/register">Register<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link navbar-brand"><span class="sr-only">(current)</span></a>

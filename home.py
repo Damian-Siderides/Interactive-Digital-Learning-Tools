@@ -6,9 +6,19 @@ from bottle import route, run, debug, template, request, static_file, get, post,
 def home():
     return template('home', status="no")
 
-@route('/problems')
-def problem():
-    return template('problems')
+@route('/template/<number:int>')
+def example(number):
+    return template('example', num=number)
+
+#would it be better as one page that displays everything with click of a button?
+
+# @route('/template/')
+# def example():
+#     return template('example')
+
+@route('/new/')
+def a():
+    return template('new')
 
 @get('/<name>')
 def page(name):
@@ -20,13 +30,14 @@ def page(name):
     right = "right" + name
     wrong = "wrong" + name
     total = "total" + name
+    recent = "recent" + name
 
     #there's a chance that python doesn't have scoping
     #which means the next line isn't needed
     user = None
 
     if request.get_cookie('username') == None:
-        user = "Anonymous"
+        user = "anonymous"
     else:
         user = request.get_cookie('username')
 
@@ -36,8 +47,19 @@ def page(name):
         c = conn.cursor()
         conn.execute("UPDATE data SET {} = {} + 1 WHERE username IS ?".format(right, right), (user,))
         conn.execute("UPDATE data SET {} = {} + 1 WHERE username IS ?".format(total, total), (user,))
-        conn.execute("UPDATE data SET {} = {} + 1 WHERE username IS ?".format(right, right), ('GLOBAL',))
-        conn.execute("UPDATE data SET {} = {} + 1 WHERE username IS ?".format(total, total), ('GLOBAL',))
+        conn.execute("UPDATE data SET {} = {} + 1 WHERE username IS ?".format(right, right), ('global',))
+        conn.execute("UPDATE data SET {} = {} + 1 WHERE username IS ?".format(total, total), ('global',))
+
+        c.execute("SELECT {} from data WHERE username IS ?".format(recent), (user,))
+        x = c.fetchone()
+        x = x[0]
+        x += 1
+
+        if x > 50:
+            x = 50
+
+        conn.execute("UPDATE data SET {} = {} WHERE username IS ?".format(recent, x), (user,))
+
         conn.commit()
         c.close()
         #status = "success"
@@ -50,8 +72,19 @@ def page(name):
         c = conn.cursor()
         conn.execute("UPDATE data SET {} = {} + 1 WHERE username IS ?".format(wrong, wrong), (user,))
         conn.execute("UPDATE data SET {} = {} + 1 WHERE username IS ?".format(total, total), (user,))
-        conn.execute("UPDATE data SET {} = {} + 1 WHERE username IS ?".format(wrong, wrong), ('GLOBAL',))
-        conn.execute("UPDATE data SET {} = {} + 1 WHERE username IS ?".format(total, total), ('GLOBAL',))
+        conn.execute("UPDATE data SET {} = {} + 1 WHERE username IS ?".format(wrong, wrong), ('global',))
+        conn.execute("UPDATE data SET {} = {} + 1 WHERE username IS ?".format(total, total), ('global',))
+
+        c.execute("SELECT {} from data WHERE username IS ?".format(recent), (user,))
+        x = c.fetchone()
+        x = x[0]
+        x -= 1
+
+        if x < 0:
+            x = 0
+
+        conn.execute("UPDATE data SET {} = {} WHERE username IS ?".format(recent, x), (user,))
+
         conn.commit()
         c.close()
         #status = "wrong"
@@ -81,7 +114,7 @@ def images(name):
 @route('/logout')
 def logout():
     response.delete_cookie('username')
-    return 'cookie deleted'
+    return template('home', status="logout")
 
 @get('/login')
 def login():
@@ -120,8 +153,17 @@ def register():
     conn = sqlite3.connect('data.db')
     c = conn.cursor()
 
-    fields = "(username, password, rightkmap, wrongkmap, totalkmap, rightkmap2, wrongkmap2, totalkmap2, rightkmap3, wrongkmap3, totalkmap3, rightkmap4, wrongkmap4, totalkmap4, rightvhdl, wrongvhdl, totalvhdl, rightvhdl2, wrongvhdl2, totalvhdl2, rightvhdl3, wrongvhdl3, totalvhdl3, rightvhdl4, wrongvhdl4, totalvhdl4, rightvhdl5, wrongvhdl5, totalvhdl5, rightfsm, wrongfsm, totalfsm, rightfsm2, wrongfsm2, totalfsm2, rightfsm3, wrongfsm3, totalfsm3, rightfsm4, wrongfsm4, totalfsm4)"
-    values = "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0"
+    fields = "(username, password, rightkmap, wrongkmap, totalkmap, recentkmap,"  \
+                              "rightkmap2, wrongkmap2, totalkmap2, recentkmap2," \
+                              "rightkmap3, wrongkmap3, totalkmap3, recentkmap3," \
+                              "rightkmap4, wrongkmap4, totalkmap4, recentkmap4," \
+                              "rightvhdl, wrongvhdl, totalvhdl, recentvhdl," \
+                              "rightvhdl2, wrongvhdl2, totalvhdl2, recentvhdl2," \
+                              "rightvhdl3, wrongvhdl3, totalvhdl3, recentvhdl3," \
+                              "rightvhdl4, wrongvhdl4, totalvhdl4, recentvhdl4," \
+                              "rightvhdl5, wrongvhdl5, totalvhdl5, recentvhdl5)"
+
+    values = "0, " * ( (4 * 9) - 1) + "0"
 
     conn.execute("INSERT INTO data {} VALUES (?, ?, {})".format(fields, values), (username, password))
     conn.commit()

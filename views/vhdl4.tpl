@@ -43,6 +43,15 @@
 
 		</center>
 
+		<br><br><br>
+  		<input id="help" name="help" value="help" type="button" onClick="help();" class="btn btn-outline-secondary btn-lg"/>
+
+  		<br><br>
+  		
+  		<div id="myDiv">
+  		<input id="slide" type="button" onclick="location.href='../';" value="Test Lecture Slide Link" class="btn btn-outline-secondary btn-lg"/>
+  		<input id="video" type="button" onclick="location.href='../';" value="Test Video Link" class="btn btn-outline-secondary btn-lg"/>
+  		</div>
 
 <script>
 
@@ -52,6 +61,28 @@
 //Make it flash?
 //So users can notice multiple flashes
 //make it a notification?
+		var y = document.getElementById("myDiv");
+  		y.style.display = "none";
+  		
+		function help() {
+			var x = document.getElementById("myDiv");
+  			if (x.style.display === "none") {
+    			x.style.display = "block";
+  			} else {
+    			x.style.display = "none";
+  			}
+		}
+
+		function printLetters(variables) {
+		
+			let letters = "";
+
+			for (let i = 0, c = 'A'; i < variables; i++) {
+				letters += c;
+				c = String.fromCharCode(c.charCodeAt() + 1);
+			}
+			document.getElementById("letters").innerHTML = letters;
+		}
 
 		function isCorrect(name) {
 
