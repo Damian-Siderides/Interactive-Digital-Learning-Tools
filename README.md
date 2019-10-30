@@ -23,4 +23,4 @@ You can run `./install.sh` which will install python-bottle (it will require pip
 
 To run the website
 
-`python main.py`
+`python home.py`
